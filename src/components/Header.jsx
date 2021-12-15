@@ -15,9 +15,11 @@ import { ThemeProvider } from '@emotion/react';
 const theme = createTheme({
 
     palette: {
-        primary: {
-            main: "#1976d2",
-            custom: "#3f51b5",
+        custom: {
+            main: "#3f51b5",
+            light:"#757de8",
+            dark: "#002984",
+            contrastText:"#FFF"
         },
     },
 });
@@ -26,7 +28,7 @@ function Header() {
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{ flexGrow: 1 }} >
-                <AppBar position="static" className="main-header" sx={{ bgcolor: "primary.custom" }} >
+                <AppBar position="static" className="main-header" color="custom" >
                     <Toolbar>
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                             Angular 9 MatTable CRUD Example
