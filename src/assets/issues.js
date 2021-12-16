@@ -1,4 +1,4 @@
-[
+const ISSUES =[
     {
       "url": "https://api.github.com/repos/angular/angular/issues/44500",
       "repository_url": "https://api.github.com/repos/angular/angular",
@@ -3090,3 +3090,4 @@
     }
   ]
   
+  export default ISSUES
