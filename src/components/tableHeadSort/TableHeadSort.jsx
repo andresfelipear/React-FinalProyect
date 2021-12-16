@@ -1,3 +1,6 @@
+import {TableHead, TableRow, TableCell, TableSortLabel, Box} from "@mui/material"
+import { visuallyHidden } from '@mui/utils';
+
 const headCells = [
     {
         id: 'id',
@@ -26,7 +29,7 @@ const headCells = [
 ];
 
 function TableHeadSort(props) {
-    const { onSelectAllClick, order, orderBy, onRequestSort } = props;
+    const {order, orderBy, onRequestSort } = props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
     };

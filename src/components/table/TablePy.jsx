@@ -8,14 +8,29 @@ import {
     TablePagination,
     IconButton,
     Box,
-    TableSortLabel,
 } from "@mui/material"
 import { Add, Edit, Delete } from "@mui/icons-material"
-import { visuallyHidden } from '@mui/utils';
 import "./TablePy.css"
 
 
 import ISSUES from '../../assets/issues'
+import TableHeadSort from '../tableHeadSort/TableHeadSort';
+
+function descendingComparator(a, b, orderBy) {
+    if (b[orderBy] < a[orderBy]) {
+        return -1;
+    }
+    if (b[orderBy] > a[orderBy]) {
+        return 1;
+    }
+    return 0;
+}
+
+function getComparator(order, orderBy) {
+    return order === 'desc'
+        ? (a, b) => descendingComparator(a, b, orderBy)
+        : (a, b) => -descendingComparator(a, b, orderBy);
+}
 
 
 function TablePy() {
@@ -30,7 +45,7 @@ function TablePy() {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
-      };
+    };
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -46,7 +61,12 @@ function TablePy() {
     return (
         <>
             <Table aria-label="simple table" >
-                <TableHead >
+                <TableHeadSort
+                    order={order}
+                    orderBy={orderBy}
+                    onRequestSort={handleRequestSort}
+                />
+                {/* <TableHead >
                     <TableRow >
                         <TableCell>Id</TableCell>
                         <TableCell>Title</TableCell>
@@ -66,7 +86,7 @@ function TablePy() {
                             </IconButton>
                         </TableCell>
                     </TableRow>
-                </TableHead>
+                </TableHead> */}
                 <TableBody>
                     {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((issue, index) => {
                         return (
