@@ -6,7 +6,7 @@ function SearchBar() {
 
     }
     return (
-        <Container sx={{pt:1, pb:2}}>
+        <Container disableGutters>
             <Box
                 component="form"
                 noValidate
@@ -18,6 +18,7 @@ function SearchBar() {
                     variant="standard"
                     fullWidth
                     onChange={handleChange}
+                    color="error"
                 />
             </Box>
         </Container>

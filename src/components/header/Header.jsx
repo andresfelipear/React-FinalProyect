@@ -26,7 +26,6 @@ const theme = createTheme({
 
 function Header() {
     return (
-        <ThemeProvider theme={theme}>
             <Box sx={{ flexGrow: 1 }} >
                 <AppBar position="static" className="main-header" color="custom" >
                     <Toolbar>
@@ -52,7 +51,6 @@ function Header() {
                 </AppBar>
             </Box>
 
-        </ThemeProvider>
 
     )
 }
