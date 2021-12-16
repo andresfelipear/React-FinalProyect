@@ -10,6 +10,8 @@ npm install @mui/icons-material
 rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 
 ### Also is necessary use a "handleChangePage" & "handleChangeRowsPerPage"
+
+```
 <TablePagination
                 rowsPerPageOptions={[5, 10, 25, 100]}
                 component="div"
@@ -19,3 +21,4 @@ rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
 />
+```
