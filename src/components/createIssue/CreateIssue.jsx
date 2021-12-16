@@ -1,9 +1,40 @@
-import React from 'react'
-import { Container, Box, TextFields, Button } from "@mui/icons-material"
+import React, { useState } from 'react'
+import { Container, Box, TextField, Button, Stack } from "@mui/material"
+import "./CreateIssue.css"
+
 
 function CreateIssue() {
+    const [required, setRequired] = useState([
+        { id: "id", helperText: true },
+        { id: "title", helperText: true },
+        { id: "state", helperText: true }
+    ]);
+
+    const handleOnChange = (event) => {
+        const value = event.target.value;
+        const id = event.target.id;
+
+        console.log(required[0].helperText)
+     
+        if (value !== "") {
+            required.map((elem)=>{
+                if(elem.id==id){
+                    elem.helperText=false;
+                }
+            })
+            setRequired(required)
+        }
+        else {
+            required.map((elem)=>{
+                if(elem.id==id){
+                    elem.helperText=true;
+                }
+            })
+            setRequired(required)
+        }
+    }
     return (
-        <Container maxWidth="md" sx={{}} >
+        <Container maxWidth="sm" sx={{}} >
             <Box
                 component="form"
                 noValidate
@@ -16,6 +47,9 @@ function CreateIssue() {
                     fullWidth
                     color="error"
                     required
+                    autoFocus
+                    helperText={required[0].helperText?"Required field":""}
+                    onChange={handleOnChange}
                 />
                 <TextField
                     id="title"
@@ -24,6 +58,8 @@ function CreateIssue() {
                     fullWidth
                     color="error"
                     required
+                    helperText={required[1].helperText?"Required field":""}
+                    onChange={handleOnChange}
                 />
                 <TextField
                     id="state"
@@ -32,6 +68,8 @@ function CreateIssue() {
                     fullWidth
                     color="error"
                     required
+                    helperText={required[2].helperText?"Required field":""}
+                    onChange={handleOnChange}
                 />
                 <TextField
                     id="url"
@@ -55,10 +93,10 @@ function CreateIssue() {
                     fullWidth
                     color="error"
                 />
-                <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                    <Button disable variant="text">Save</Button>
-                    <Button  variant="text">Cancel</Button>
-                </Box>
+                <Stack direction="row" spacing={2} sx={{ p: 2 }}>
+                    <Button disable="true" variant="text">Save</Button>
+                    <Button variant="text">Cancel</Button>
+                </Stack>
             </Box>
         </Container>
     )
