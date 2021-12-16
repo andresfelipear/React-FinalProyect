@@ -5,10 +5,38 @@ import "./TablePy.css"
 
 import ISSUES from '../../assets/issues'
 
+
+const headCells = [
+    {
+      id: 'id',
+      label: 'Id',
+    },
+    {
+      id: 'title',
+      label: 'Title',
+    },
+    {
+      id: 'state',
+      label: 'State',
+    },
+    {
+      id: 'url',
+      label: 'Url',
+    },
+    {
+      id: 'created at',
+      label: 'Created at',
+    },
+    {
+        id: 'updated at',
+        label: 'Updated at',
+      },
+  ];
+
 function TablePy() {
     const [data, setData] = useState(ISSUES);
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
