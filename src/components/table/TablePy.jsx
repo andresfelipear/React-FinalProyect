@@ -1,39 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { Table, TableHead, TableBody, TableRow, TableCell, TablePagination, IconButton, Box } from "@mui/material"
+import {
+    Table,
+    TableHead,
+    TableBody,
+    TableRow,
+    TableCell,
+    TablePagination,
+    IconButton,
+    Box,
+    TableSortLabel,
+} from "@mui/material"
 import { Add, Edit, Delete } from "@mui/icons-material"
+import { visuallyHidden } from '@mui/utils';
 import "./TablePy.css"
+
 
 import ISSUES from '../../assets/issues'
 
 
-const headCells = [
-    {
-      id: 'id',
-      label: 'Id',
-    },
-    {
-      id: 'title',
-      label: 'Title',
-    },
-    {
-      id: 'state',
-      label: 'State',
-    },
-    {
-      id: 'url',
-      label: 'Url',
-    },
-    {
-      id: 'created at',
-      label: 'Created at',
-    },
-    {
-        id: 'updated at',
-        label: 'Updated at',
-      },
-  ];
-
 function TablePy() {
+    const [order, setOrder] = React.useState('asc');
+    const [orderBy, setOrderBy] = React.useState('id');
     const [data, setData] = useState(ISSUES);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
