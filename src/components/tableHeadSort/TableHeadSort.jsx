@@ -1,5 +1,6 @@
-import {TableHead, TableRow, TableCell, TableSortLabel, Box} from "@mui/material"
+import { TableHead, TableRow, TableCell, TableSortLabel, Box, IconButton } from "@mui/material"
 import { visuallyHidden } from '@mui/utils';
+import { Add } from "@mui/icons-material"
 
 const headCells = [
     {
@@ -29,7 +30,7 @@ const headCells = [
 ];
 
 function TableHeadSort(props) {
-    const {order, orderBy, onRequestSort } = props;
+    const { order, orderBy, onRequestSort } = props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
     };
@@ -56,6 +57,17 @@ function TableHeadSort(props) {
                         </TableSortLabel>
                     </TableCell>
                 ))}
+                <TableCell>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="custom"
+                        aria-label="refresh"
+                        sx={{}}
+                    >
+                        <Add />
+                    </IconButton>
+                </TableCell>
             </TableRow>
         </TableHead>
     );

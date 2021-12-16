@@ -6,7 +6,7 @@ function SearchBar() {
 
     }
     return (
-        <Container disableGutters maxWidth="false" >
+        <Container disableGutters maxWidth="false" sx={{pb:2}} >
             <Box
                 component="form"
                 noValidate

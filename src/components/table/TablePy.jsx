@@ -88,7 +88,9 @@ function TablePy() {
                     </TableRow>
                 </TableHead> */}
                 <TableBody>
-                    {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((issue, index) => {
+                    {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .sort(getComparator(order, orderBy))
+                    .map((issue, index) => {
                         return (
                             <TableRow key={index}>
                                 <TableCell>{issue.id}</TableCell>
