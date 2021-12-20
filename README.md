@@ -33,3 +33,41 @@ import { Dialog, DialogTitle } from "@mui/material"
                 <FormComponent handleClose={handleClose} />
 </Dialog>
 ```
+
+## Getting form data: react-hook-form
+```
+import { Controller, useForm } from "react-hook-form";
+
+const { handleSubmit, reset, control } = useForm();
+    <Controller
+                    name={"id"}
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                        <TextField
+                            id="id"
+                            label="Id"
+                            variant="standard"
+                            fullWidth
+                            color="error"
+                            required
+                            autoFocus
+                            helperText={required[0].helperText ? "Required field" : ""}
+                            onChange={(event)=>{
+                                handleOnChange(event);
+                                onChange(event);
+                            }}
+                        />)}
+                />
+```
+
+### Controller save the data and send this with the callback function "handleSubmit" using a button
+```
+<Button onClick={handleSubmit(onSubmit)}>Save</Button>
+
+
+const onSubmit = (data) => {
+        console.log(data)
+        // dispatch()
+
+    }
+```

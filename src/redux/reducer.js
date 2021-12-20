@@ -1,7 +1,7 @@
 import {ADD_ISSUE, UPDATE_ISSUE, DELETE_ISSUE} from "./actions"
-
+import ISSUES from "../assets/issues"
 const initState = {
-
+    list:ISSUES
 }
 
 const reducer = (state = initState, action) => {

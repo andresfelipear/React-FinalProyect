@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
     Table,
-    TableHead,
     TableBody,
     TableRow,
     TableCell,
@@ -9,7 +8,7 @@ import {
     IconButton,
     Box,
 } from "@mui/material"
-import { Add, Edit, Delete } from "@mui/icons-material"
+import { Edit, Delete } from "@mui/icons-material"
 import "./TablePy.css"
 
 
@@ -67,27 +66,6 @@ function TablePy(props) {
                     onRequestSort={handleRequestSort}
                     handleClick={props.handleClick}
                 />
-                {/* <TableHead >
-                    <TableRow >
-                        <TableCell>Id</TableCell>
-                        <TableCell>Title</TableCell>
-                        <TableCell>State</TableCell>
-                        <TableCell>Url</TableCell>
-                        <TableCell>Created at</TableCell>
-                        <TableCell>Updated at</TableCell>
-                        <TableCell>
-                            <IconButton
-                                size="large"
-                                edge="start"
-                                color="custom"
-                                aria-label="refresh"
-                                sx={{}}
-                            >
-                                <Add />
-                            </IconButton>
-                        </TableCell>
-                    </TableRow>
-                </TableHead> */}
                 <TableBody>
                     {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .sort(getComparator(order, orderBy))
