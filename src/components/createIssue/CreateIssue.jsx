@@ -3,8 +3,8 @@ import { Container, Box, TextField, Button, Stack } from "@mui/material"
 import "./CreateIssue.css"
 import { Controller, useForm } from "react-hook-form";
 
-import { useDispatch } from 'react-redux'
-import { ADD_ISSUE } from '../../redux/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { add_issue } from '../../redux/actions'
 
 
 function CreateIssue(props) {
@@ -12,6 +12,7 @@ function CreateIssue(props) {
 
     //Controller
     const { handleSubmit, reset, control } = useForm();
+    const bigData = useSelector(state => state.list)
 
     const [required, setRequired] = useState([
         { id: "id", helperText: true },
@@ -21,7 +22,8 @@ function CreateIssue(props) {
 
     const onSubmit = (data) => {
         console.log(data)
-        // dispatch()
+        dispatch(add_issue(data))
+        console.log(bigData);
 
     }
 

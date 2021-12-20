@@ -9,6 +9,7 @@ const reducer = (state = initState, action) => {
         case ADD_ISSUE:
             return {
                 ...state,
+                list:[...state.list,action.payload],
                 
             }
         case UPDATE_ISSUE:
