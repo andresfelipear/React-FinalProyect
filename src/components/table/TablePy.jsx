@@ -14,6 +14,7 @@ import "./TablePy.css"
 
 import ISSUES from '../../assets/issues'
 import TableHeadSort from '../tableHeadSort/TableHeadSort';
+import { useSelector } from 'react-redux'
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -35,7 +36,7 @@ function getComparator(order, orderBy) {
 function TablePy(props) {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('id');
-    const [data, setData] = useState(ISSUES);
+    const data = useSelector(state => state.list);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
