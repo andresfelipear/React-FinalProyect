@@ -1,18 +1,31 @@
-import React from 'react'
-import {Paper, TextField} from "@mui/material"
+import React, { useState } from 'react'
+import { Paper,  Dialog } from "@mui/material"
 import SearchBar from '../searchBar/SearchBar'
 import TablePy from '../table/TablePy'
 import "./Main.css"
 import CreateIssue from '../createIssue/CreateIssue'
 
 
-// sx={{height:1/2}}
 function Main() {
+
+    const [open, setOpen] = useState(false)
+    const handleClick = (event) => {
+        setOpen(true)
+
+    }
+
+    const handleClose = () => {
+        setOpen(false)
+    }
+
     return (
         <Paper elevation={8} >
-            <SearchBar/>
-            {/* <TablePy/> */}
-            <CreateIssue/>
+            <SearchBar />
+            <TablePy handleClick={handleClick} handleClose={handleClose} />
+            <Dialog open={open} onClose={handleClose}>
+                <CreateIssue handleClose={handleClose} />
+            </Dialog>
+
         </Paper>
     )
 }

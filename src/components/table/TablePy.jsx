@@ -33,7 +33,7 @@ function getComparator(order, orderBy) {
 }
 
 
-function TablePy() {
+function TablePy(props) {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('id');
     const [data, setData] = useState(ISSUES);
@@ -65,6 +65,7 @@ function TablePy() {
                     order={order}
                     orderBy={orderBy}
                     onRequestSort={handleRequestSort}
+                    handleClick={props.handleClick}
                 />
                 {/* <TableHead >
                     <TableRow >

@@ -30,7 +30,7 @@ const headCells = [
 ];
 
 function TableHeadSort(props) {
-    const { order, orderBy, onRequestSort } = props;
+    const { order, orderBy, onRequestSort, handleClick } = props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
     };
@@ -62,10 +62,13 @@ function TableHeadSort(props) {
                         size="large"
                         edge="start"
                         color="custom"
-                        aria-label="refresh"
+                        aria-label="add"
                         sx={{}}
+                        onClick={handleClick}
                     >
-                        <Add />
+                        <Add
+                            
+                        />
                     </IconButton>
                 </TableCell>
             </TableRow>

@@ -1,3 +1,7 @@
-.MuiTextField-root{
-    padding-bottom: 20px;
+.MuiFormControl-root{
+    padding-bottom: 10px !important;
+}
+
+#title-helper-text, #id-helper-text, #state-helper-text{
+    color:red;
 }
