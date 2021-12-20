@@ -7,14 +7,15 @@ import {
     TablePagination,
     IconButton,
     Box,
+    Stack,
 } from "@mui/material"
 import { Edit, Delete } from "@mui/icons-material"
 import "./TablePy.css"
 
 
-import ISSUES from '../../assets/issues'
 import TableHeadSort from '../tableHeadSort/TableHeadSort';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { delete_issue } from '../../redux/actions'
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -34,6 +35,7 @@ function getComparator(order, orderBy) {
 
 
 function TablePy(props) {
+    const dispatch = useDispatch();
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('id');
     const data = useSelector(state => state.list);
@@ -57,6 +59,15 @@ function TablePy(props) {
 
     }
 
+    const handleDelete = (id) => {
+        dispatch(delete_issue(id));
+    }
+
+    const handleUpdate = (issue) =>{
+        props.handleClick(issue)
+
+    }
+
 
     return (
         <>
@@ -69,33 +80,40 @@ function TablePy(props) {
                 />
                 <TableBody>
                     {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .sort(getComparator(order, orderBy))
-                    .map((issue, index) => {
-                        return (
-                            <TableRow key={index}>
-                                <TableCell>{issue.id}</TableCell>
-                                <TableCell>{issue.title}</TableCell>
-                                <TableCell>{issue.state}</TableCell>
-                                <TableCell>{issue.url}</TableCell>
-                                <TableCell>{issue.updated_at}</TableCell>
-                                <TableCell>{issue.created_at}</TableCell>
-                                <TableCell>
-                                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                                        <IconButton size="large" aria-label="edit issue" color="error">
-                                            <Edit />
-                                        </IconButton>
-                                        <IconButton
-                                            size="large"
-                                            aria-label="delete issue"
-                                            color="error"
-                                        >
-                                            <Delete />
-                                        </IconButton>
-                                    </Box>
-                                </TableCell>
-                            </TableRow>
-                        )
-                    })}
+                        .sort(getComparator(order, orderBy))
+                        .map((issue, index) => {
+                            return (
+                                <TableRow key={index}>
+                                    <TableCell>{issue.id}</TableCell>
+                                    <TableCell>{issue.title}</TableCell>
+                                    <TableCell>{issue.state}</TableCell>
+                                    <TableCell>{issue.url}</TableCell>
+                                    <TableCell>{issue.updated_at}</TableCell>
+                                    <TableCell>{issue.created_at}</TableCell>
+                                    <TableCell>
+                                        <Stack  direction="row">
+                                            <IconButton
+                                                size="large"
+                                                aria-label="edit issue"
+                                                color="error"
+                                                onClick={()=>{handleUpdate(issue)}}
+                                            >
+                                                <Edit />
+                                            </IconButton>
+                                            <IconButton
+                                                size="large"
+                                                aria-label="delete issue"
+                                                color="error"
+                                                onClick={()=>{handleDelete(issue.id)}}
+                                            >
+                                                <Delete />
+
+                                            </IconButton>
+                                        </Stack>
+                                    </TableCell>
+                                </TableRow>
+                            )
+                        })}
 
                 </TableBody>
             </Table>

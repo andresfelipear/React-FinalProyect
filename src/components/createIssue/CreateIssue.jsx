@@ -1,23 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Box, TextField, Button, Stack } from "@mui/material"
 import "./CreateIssue.css"
 import { Controller, useForm } from "react-hook-form";
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 import { add_issue } from '../../redux/actions'
 
 
 function CreateIssue(props) {
     const dispatch = useDispatch();
 
+    const issue = props.issue;
+
     //Controller
-    const { handleSubmit, reset, control } = useForm();
-    const bigData = useSelector(state => state.list)
+    const { handleSubmit, reset, control } = useForm({defaulValues:issue});
+
+    useEffect(() => {
+        reset(props.issue);
+      }, [props.issue]);
 
     const [required, setRequired] = useState([
-        { id: "id", helperText: true },
-        { id: "title", helperText: true },
-        { id: "state", helperText: true }
+        { id: "id", helperText: issue.id?false:true },
+        { id: "title", helperText: issue.id?false:true },
+        { id: "state", helperText: issue.id?false:true }
     ]);
 
     const onSubmit = (data) => {
@@ -60,7 +65,7 @@ function CreateIssue(props) {
                 <Controller
                     name={"id"}
                     control={control}
-                    render={({ field: { onChange, value } }) => (
+                    render={({ field: { onChange, value, defaulValue} }) => (
                         <TextField
                             id="id"
                             label="Id"
@@ -69,6 +74,7 @@ function CreateIssue(props) {
                             color="error"
                             required
                             autoFocus
+                            value={value}
                             helperText={required[0].helperText ? "Required field" : ""}
                             onChange={(event)=>{
                                 handleOnChange(event);
@@ -88,6 +94,7 @@ function CreateIssue(props) {
                             fullWidth
                             color="error"
                             required
+                            value={value}
                             helperText={required[1].helperText ? "Required field" : ""}
                             onChange={(event)=>{
                                 handleOnChange(event);
@@ -108,6 +115,7 @@ function CreateIssue(props) {
                             fullWidth
                             color="error"
                             required
+                            value={value}
                             helperText={required[2].helperText ? "Required field" : ""}
                             onChange={(event)=>{
                                 handleOnChange(event);
@@ -127,6 +135,7 @@ function CreateIssue(props) {
                             variant="standard"
                             fullWidth
                             color="error"
+                            value={value}
                             onChange={onChange}
                         />
                     )}
@@ -142,6 +151,7 @@ function CreateIssue(props) {
                             variant="standard"
                             fullWidth
                             color="error"
+                            value={value}
                             onChange={onChange}
                         />
                     )}
@@ -158,6 +168,7 @@ function CreateIssue(props) {
                             fullWidth
                             color="error"
                             onChange={onChange}
+                            value={value}
                         />
                     )}
                 />

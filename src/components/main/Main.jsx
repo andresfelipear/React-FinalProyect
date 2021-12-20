@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Paper,  Dialog, DialogTitle } from "@mui/material"
+import { Paper, Dialog, DialogTitle } from "@mui/material"
 import SearchBar from '../searchBar/SearchBar'
 import TablePy from '../table/TablePy'
 import "./Main.css"
@@ -9,13 +9,19 @@ import CreateIssue from '../createIssue/CreateIssue'
 function Main() {
 
     const [open, setOpen] = useState(false)
+    const [issue, setIssue] = useState([])
     const handleClick = (event) => {
+        if (event.id) {
+            console.log(event)
+            setIssue(event)
+        }
         setOpen(true)
 
     }
 
     const handleClose = () => {
         setOpen(false)
+        setIssue([])
     }
 
     return (
@@ -24,8 +30,9 @@ function Main() {
             <TablePy handleClick={handleClick} handleClose={handleClose} />
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Add new Issue</DialogTitle>
-                <CreateIssue handleClose={handleClose} />
+                <CreateIssue handleClose={handleClose} issue={issue}/>
             </Dialog>
+
 
         </Paper>
     )
