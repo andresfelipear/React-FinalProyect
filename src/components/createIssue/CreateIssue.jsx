@@ -21,15 +21,12 @@ function CreateIssue(props) {
     ]);
 
     const onSubmit = (data) => {
-        console.log(data)
         dispatch(add_issue(data))
-        console.log(bigData);
-
+        props.handleClose()
     }
 
 
     const handleOnChange = (event) => {
-        console.log("hola onchange");
         const value = event.target.value;
         const id = event.target.id;
 
@@ -136,11 +133,11 @@ function CreateIssue(props) {
                 />
 
                 <Controller
-                    name={"created at"}
+                    name={"created_at"}
                     control={control}
                     render={({ field: { onChange, value } }) => (
                         <TextField
-                            id="created at"
+                            id="created_at"
                             label="Created at"
                             variant="standard"
                             fullWidth
@@ -151,11 +148,11 @@ function CreateIssue(props) {
                 />
 
                 <Controller
-                    name={"updated at"}
+                    name={"updated_at"}
                     control={control}
                     render={({ field: { onChange, value } }) => (
                         <TextField
-                            id="update at"
+                            id="update_at"
                             label="Updated at"
                             variant="standard"
                             fullWidth

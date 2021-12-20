@@ -20,11 +20,11 @@ const headCells = [
         label: 'Url',
     },
     {
-        id: 'created at',
+        id: 'created_at',
         label: 'Created at',
     },
     {
-        id: 'updated at',
+        id: 'updated_at',
         label: 'Updated at',
     },
 ];
