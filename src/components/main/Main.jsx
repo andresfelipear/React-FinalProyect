@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Paper,  Dialog } from "@mui/material"
+import { Paper,  Dialog, DialogTitle } from "@mui/material"
 import SearchBar from '../searchBar/SearchBar'
 import TablePy from '../table/TablePy'
 import "./Main.css"
@@ -23,6 +23,7 @@ function Main() {
             <SearchBar />
             <TablePy handleClick={handleClick} handleClose={handleClose} />
             <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Add new Issue</DialogTitle>
                 <CreateIssue handleClose={handleClose} />
             </Dialog>
 

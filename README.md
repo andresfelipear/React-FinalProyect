@@ -24,3 +24,12 @@ rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 onRowsPerPageChange={handleChangeRowsPerPage}
 />
 ```
+
+## Use Dialog mui
+```
+import { Dialog, DialogTitle } from "@mui/material"
+<Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Add new Issue</DialogTitle>
+                <FormComponent handleClose={handleClose} />
+</Dialog>
+```
