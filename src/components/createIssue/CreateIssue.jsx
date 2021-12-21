@@ -9,7 +9,16 @@ import { add_issue, update_issue } from '../../redux/actions'
 
 function CreateIssue(props) {
     const dispatch = useDispatch();
-    const issue= props.issue;
+    const backupIssue = {
+        id:"",
+        title:"",
+        url:"",
+        state:"",
+        created_at:"",
+        update_at:""
+    }
+
+    const issue= props.issue!=0?props.issue:backupIssue;
 
     //Controller
     const { handleSubmit, reset, control } = useForm();
