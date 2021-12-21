@@ -34,13 +34,23 @@ const reducer = (state = initState, action) => {
             }
 
         case FILTER_ISSUES:
+            const dataFilter = state.list.filter((issue) => (
+                String(issue.id).includes(action.payload) || issue.title.includes(action.payload) || issue.url.includes(action.payload) || issue.state.includes(action.payload)
+                || issue.created_at.includes(action.payload) || issue.updated_at.includes(action.payload)
+            ))
+
+            const noData = [{
+                id:"",
+                title:"",
+                url:"",
+                state:"",
+                created_at:"",
+                updated_at:""
+            }]
 
             return {
                 ...state,
-                searchList: state.list.filter((issue) => (
-                    String(issue.id).includes(action.payload) || issue.title.includes(action.payload) || issue.url.includes(action.payload) || issue.state.includes(action.payload)
-                    || issue.created_at.includes(action.payload) || issue.updated_at.includes(action.payload)
-                ))
+                searchList: dataFilter==0?noData:dataFilter
             }
 
         default:
