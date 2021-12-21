@@ -15,6 +15,13 @@ const reducer = (state = initState, action) => {
         case UPDATE_ISSUE:
             return {
                 ...state,
+                list: state.list.map((issue) => {
+                        if (issue.id === action.id) {
+                            issue = action.data;
+                        }
+                        return(issue)
+                    })
+
 
             }
         case DELETE_ISSUE:

@@ -4,7 +4,7 @@ import "./CreateIssue.css"
 import { Controller, useForm } from "react-hook-form";
 
 import { useDispatch, useSelector} from 'react-redux'
-import { add_issue } from '../../redux/actions'
+import { add_issue, update_issue } from '../../redux/actions'
 
 
 function CreateIssue(props) {
@@ -26,7 +26,13 @@ function CreateIssue(props) {
     ]);
 
     const onSubmit = (data) => {
-        dispatch(add_issue(data))
+        
+        if(issue.id){
+            dispatch(update_issue(issue.id, data))
+        }
+        else{
+            dispatch(add_issue(data))
+        }
         props.handleClose()
     }
 

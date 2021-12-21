@@ -7,8 +7,8 @@ export const add_issue = (issue) =>{
     return{type:ADD_ISSUE,payload:issue}
 }
 
-export const update_issue = (id) =>{
-    return{type:UPDATE_ISSUE,payload:id}
+export const update_issue = (oldId, issue) =>{
+    return{type:UPDATE_ISSUE,id:oldId,data:issue}
 }
 
 

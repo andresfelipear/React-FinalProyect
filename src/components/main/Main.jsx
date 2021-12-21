@@ -12,7 +12,6 @@ function Main() {
     const [issue, setIssue] = useState([])
     const handleClick = (event) => {
         if (event.id) {
-            console.log(event)
             setIssue(event)
         }
         setOpen(true)
