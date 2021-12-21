@@ -9,15 +9,10 @@ import { add_issue, update_issue } from '../../redux/actions'
 
 function CreateIssue(props) {
     const dispatch = useDispatch();
-
-    const issue = props.issue;
+    const issue= props.issue;
 
     //Controller
-    const { handleSubmit, reset, control } = useForm({defaulValues:issue});
-
-    useEffect(() => {
-        reset(props.issue);
-      }, [props.issue]);
+    const { handleSubmit, reset, control } = useForm();
 
     const [required, setRequired] = useState([
         { id: "id", helperText: issue.id?false:true },
@@ -71,7 +66,8 @@ function CreateIssue(props) {
                 <Controller
                     name={"id"}
                     control={control}
-                    render={({ field: { onChange, value, defaulValue} }) => (
+                    defaultValue={issue.id}
+                    render={({ field: { onChange, value} }) => (
                         <TextField
                             id="id"
                             label="Id"
@@ -92,6 +88,7 @@ function CreateIssue(props) {
                 <Controller
                     name={"title"}
                     control={control}
+                    defaultValue={issue.title}
                     render={({ field: { onChange, value } }) => (
                         <TextField
                             id="title"
@@ -113,6 +110,7 @@ function CreateIssue(props) {
                 <Controller
                     name={"state"}
                     control={control}
+                    defaultValue={issue.state}
                     render={({ field: { onChange, value } }) => (
                         <TextField
                             id="state"
@@ -134,6 +132,7 @@ function CreateIssue(props) {
                 <Controller
                     name={"url"}
                     control={control}
+                    defaultValue={issue.url}
                     render={({ field: { onChange, value } }) => (
                         <TextField
                             id="url"
@@ -150,6 +149,7 @@ function CreateIssue(props) {
                 <Controller
                     name={"created_at"}
                     control={control}
+                    defaultValue={issue.created_at}
                     render={({ field: { onChange, value } }) => (
                         <TextField
                             id="created_at"
@@ -166,6 +166,7 @@ function CreateIssue(props) {
                 <Controller
                     name={"updated_at"}
                     control={control}
+                    defaultValue={issue.updated_at}
                     render={({ field: { onChange, value } }) => (
                         <TextField
                             id="update_at"
