@@ -1,7 +1,8 @@
-import { ADD_ISSUE, UPDATE_ISSUE, DELETE_ISSUE } from "./actions"
+import { ADD_ISSUE, UPDATE_ISSUE, DELETE_ISSUE, FILTER_ISSUES } from "./actions"
 import ISSUES from "../assets/issues"
 const initState = {
-    list: ISSUES
+    list: ISSUES,
+    searchList: 0
 }
 
 const reducer = (state = initState, action) => {
@@ -10,24 +11,36 @@ const reducer = (state = initState, action) => {
             return {
                 ...state,
                 list: [...state.list, action.payload],
-
+                searchList: 0
             }
         case UPDATE_ISSUE:
             return {
                 ...state,
                 list: state.list.map((issue) => {
-                        if (issue.id === action.id) {
-                            issue = action.data;
-                        }
-                        return(issue)
-                    })
+                    if (issue.id === action.id) {
+                        issue = action.data;
+                    }
+                    return (issue)
+                }),
+                searchList: 0
 
 
             }
         case DELETE_ISSUE:
             return {
                 ...state,
-                list: state.list.filter((issue) => (issue.id !== action.payload))
+                list: state.list.filter((issue) => (issue.id !== action.payload)),
+                searchList: 0
+            }
+
+        case FILTER_ISSUES:
+
+            return {
+                ...state,
+                searchList: state.list.filter((issue) => (
+                    String(issue.id).includes(action.payload) || issue.title.includes(action.payload) || issue.url.includes(action.payload) || issue.state.includes(action.payload)
+                    || issue.created_at.includes(action.payload) || issue.updated_at.includes(action.payload)
+                ))
             }
 
         default:

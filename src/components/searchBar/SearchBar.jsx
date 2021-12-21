@@ -1,9 +1,14 @@
 import React from 'react'
 import { Container, TextField, Box } from "@mui/material"
+import { useDispatch } from 'react-redux'
+import {filter_issues} from "../../redux/actions"
+import { useState } from 'react'
+import { set } from 'react-hook-form'
 
 function SearchBar() {
-    const handleChange = () => {
-
+    const dispatch = useDispatch()
+    const handleChange = (e) => {
+        dispatch(filter_issues(e.target.value))
     }
     return (
         <Container disableGutters maxWidth="false" sx={{pb:2}} >

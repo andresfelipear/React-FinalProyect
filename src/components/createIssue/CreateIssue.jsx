@@ -3,7 +3,7 @@ import { Container, Box, TextField, Button, Stack } from "@mui/material"
 import "./CreateIssue.css"
 import { Controller, useForm } from "react-hook-form";
 
-import { useDispatch, useSelector} from 'react-redux'
+import { useDispatch} from 'react-redux'
 import { add_issue, update_issue } from '../../redux/actions'
 
 
