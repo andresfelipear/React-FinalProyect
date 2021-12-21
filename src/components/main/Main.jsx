@@ -28,7 +28,7 @@ function Main() {
             <SearchBar />
             <TablePy handleClick={handleClick} handleClose={handleClose} />
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Add new Issue</DialogTitle>
+                <DialogTitle>{issue!=0?`Issue id: ${issue.id}`:"Add new Issue"}</DialogTitle>
                 <CreateIssue handleClose={handleClose} issue={issue}/>
             </Dialog>
 
