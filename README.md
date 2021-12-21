@@ -71,3 +71,28 @@ const onSubmit = (data) => {
 
     }
 ```
+
+### Set default value, input - form
+```
+<Controller
+    name={"id"}
+    control={control}
+    defaultValue={issue.id}
+    render={({ field: { onChange, value} }) => (
+        <TextField
+            id="id"
+            label="Id"
+            variant="standard"
+            fullWidth
+            color="error"
+            required
+            autoFocus
+            value={value}
+            helperText={required[0].helperText ? "Required field" : ""}
+            onChange={(event)=>{
+                handleOnChange(event);
+                onChange(event);
+            }}
+        />)}
+/>
+```
