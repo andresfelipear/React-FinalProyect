@@ -63,7 +63,7 @@ function TablePy(props) {
         dispatch(delete_issue(id));
     }
 
-    const handleUpdate = (issue) =>{
+    const handleUpdate = (issue) => {
         props.handleClick(issue)
 
     }
@@ -79,8 +79,8 @@ function TablePy(props) {
                     handleClick={props.handleClick}
                 />
                 <TableBody>
-                    {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .sort(getComparator(order, orderBy))
+                    {data.sort(getComparator(order, orderBy))
+                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map((issue, index) => {
                             return (
                                 <TableRow key={index}>
@@ -91,12 +91,12 @@ function TablePy(props) {
                                     <TableCell>{issue.updated_at}</TableCell>
                                     <TableCell>{issue.created_at}</TableCell>
                                     <TableCell>
-                                        <Stack  direction="row">
+                                        <Stack direction="row">
                                             <IconButton
                                                 size="large"
                                                 aria-label="edit issue"
                                                 color="error"
-                                                onClick={()=>{handleUpdate(issue)}}
+                                                onClick={() => { handleUpdate(issue) }}
                                             >
                                                 <Edit />
                                             </IconButton>
@@ -104,7 +104,7 @@ function TablePy(props) {
                                                 size="large"
                                                 aria-label="delete issue"
                                                 color="error"
-                                                onClick={()=>{handleDelete(issue.id)}}
+                                                onClick={() => { handleDelete(issue.id) }}
                                             >
                                                 <Delete />
 
