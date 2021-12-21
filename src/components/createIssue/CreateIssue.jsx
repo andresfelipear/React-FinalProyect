@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Container, Box, TextField, Button, Stack } from "@mui/material"
 import "./CreateIssue.css"
 import { Controller, useForm } from "react-hook-form";
@@ -15,7 +15,7 @@ function CreateIssue(props) {
         url:"",
         state:"",
         created_at:"",
-        update_at:""
+        updated_at:""
     }
 
     const issue= props.issue!=0?props.issue:backupIssue;
@@ -183,8 +183,9 @@ function CreateIssue(props) {
                             variant="standard"
                             fullWidth
                             color="error"
-                            onChange={onChange}
                             value={value}
+                            onChange={onChange}
+                            
                         />
                     )}
                 />

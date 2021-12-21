@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
     Table,
     TableBody,
@@ -6,7 +6,6 @@ import {
     TableCell,
     TablePagination,
     IconButton,
-    Box,
     Stack,
 } from "@mui/material"
 import { Edit, Delete } from "@mui/icons-material"
@@ -87,8 +86,8 @@ function TablePy(props) {
                                     <TableCell>{issue.title}</TableCell>
                                     <TableCell>{issue.state}</TableCell>
                                     <TableCell>{issue.url}</TableCell>
-                                    <TableCell>{issue.updated_at}</TableCell>
                                     <TableCell>{issue.created_at}</TableCell>
+                                    <TableCell>{issue.updated_at}</TableCell>
                                     <TableCell>
                                         <Stack direction="row">
                                             <IconButton
